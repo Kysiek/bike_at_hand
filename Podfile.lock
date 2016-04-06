@@ -1,0 +1,36 @@
+PODS:
+  - Alamofire (3.2.0)
+  - AlamofireNetworkActivityIndicator (1.0.0):
+    - Alamofire (~> 3.2)
+  - AlamofireObjectMapper (2.1.2):
+    - Alamofire (~> 3.2)
+    - ObjectMapper (~> 1.0)
+  - ObjectMapper (1.1.5)
+  - ReactiveCocoa (4.1.0):
+    - ReactiveCocoa/UI (= 4.1.0)
+    - Result (~> 2.0)
+  - ReactiveCocoa/Core (4.1.0):
+    - ReactiveCocoa/no-arc
+    - Result (~> 2.0)
+  - ReactiveCocoa/no-arc (4.1.0):
+    - Result (~> 2.0)
+  - ReactiveCocoa/UI (4.1.0):
+    - ReactiveCocoa/Core
+    - Result (~> 2.0)
+  - Result (2.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - AlamofireNetworkActivityIndicator (~> 1.0)
+  - AlamofireObjectMapper (~> 2.1)
+  - ReactiveCocoa (~> 4.1)
+
+SPEC CHECKSUMS:
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  AlamofireNetworkActivityIndicator: 34e6fe7ebb5d8df76cc55fbf83a6087ae6457344
+  AlamofireObjectMapper: 82391c31f23e37bdb2660da174bcf81b202da39d
+  ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
+  ReactiveCocoa: d70004d7a366a7b8e87e60ce2347182c77701949
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
+
+COCOAPODS: 0.39.0

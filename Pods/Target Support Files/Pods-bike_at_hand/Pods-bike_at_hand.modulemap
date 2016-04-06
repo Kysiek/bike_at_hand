@@ -1,0 +1,6 @@
+framework module Pods_bike_at_hand {
+  umbrella header "Pods-bike_at_hand-umbrella.h"
+
+  export *
+  module * { export * }
+}
