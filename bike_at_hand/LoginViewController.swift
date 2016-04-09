@@ -20,6 +20,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var networkIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var checkingIfLoggedLabel: UILabel!
+    @IBOutlet weak var loginPanelStackView: UIStackView!
+
+    
     //MARK: UIViewController methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +31,8 @@ class LoginViewController: UIViewController {
         userAPI = APIFactory.getAPIWithMockedUserAPIAndPersistencyManager()
         
         initializeReactivness()
+        checkUserAuthenticated()
+        
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,10 +41,10 @@ class LoginViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "userAuthenticatedSegue" {
-            let stationListViewController =
-                ((segue.destinationViewController as! UITabBarController).viewControllers![0] as! UINavigationController)
-                .topViewController as! StationListViewController
-            stationListViewController.userAPI = userAPI
+            
+            //Setting userAPI variable to the appropriate view controllers of TableBarNavigationController
+            (((segue.destinationViewController as! UITabBarController).viewControllers![0] as! UINavigationController).topViewController as! StationListViewController).userAPI = userAPI
+            (((segue.destinationViewController as! UITabBarController).viewControllers![1] as! UINavigationController).topViewController as! MapViewController).userAPI = userAPI
         }
     }
     
@@ -83,26 +89,31 @@ class LoginViewController: UIViewController {
             })
         .toSignalProducer()
             .startWithNext({ _ in
-                self.userAPI.authenticate(self.usernameTextField.text!,
+                
+                self.userAPI.authenticate(
+                    self.usernameTextField.text!,
                     password: self.passwordTextField.text!,
-                    complete: { success in
-                        if success {
+                    success: {
+                            
+                        self.callFunctionInMainThread {
                             self.networkIndicator.stopAnimating()
                             self.performSegueWithIdentifier("userAuthenticatedSegue", sender: nil)
-                        } else {
-                            self.showAlert("Authentication has failed")
                         }
-                    })
+                    },
+                    error: { message in
+                        self.callFunctionInMainThread {
+                            self.showAlert(message, cancellationHandler: {action in
+                                self.networkIndicator.stopAnimating()
+                            })
+                        }
+                    }
+                )
             })
     }
     
     //MARK: Private helpers
     
-    func showAlert(message: String) {
-        let allertController = UIAlertController(title: Config.AlertMessages.ErrorTitle, message: message, preferredStyle: .Alert)
-        allertController.addAction(UIAlertAction(title: Config.AlertMessages.DoneButtonTitle, style: .Cancel, handler: nil))
-        self.presentViewController(allertController, animated: true, completion: nil)
-    }
+    
     
     private func setPreviousUsername() {
         if let previousUsername = userAPI.getPreviousUsername() {
@@ -120,6 +131,29 @@ class LoginViewController: UIViewController {
     
     private func getColorForTextField(isValid: Bool) -> UIColor {
         return isValid ? UIColor.greenColor() : UIColor.yellowColor()
+    }
+    
+    private func checkUserAuthenticated() {
+        loginPanelStackView.userInteractionEnabled = false
+        networkIndicator.startAnimating()
+        checkingIfLoggedLabel.hidden = false
+        
+        userAPI.checkIfLogged({
+            self.callFunctionInMainThread {
+                self.enableLoginForm()
+                self.performSegueWithIdentifier("userAuthenticatedSegue", sender: nil)
+            }
+            },
+            notLoggedCallback: {
+                self.enableLoginForm()
+            }
+        )
+    }
+    
+    private func enableLoginForm() {
+        self.loginPanelStackView.userInteractionEnabled = true
+        self.networkIndicator.stopAnimating()
+        self.checkingIfLoggedLabel.hidden = true
     }
     
     deinit {

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114581631CB94397006B346A /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114581621CB94397006B346A /* UserSession.swift */; };
+		114581661CB95B8C006B346A /* NetworkResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114581651CB95B8C006B346A /* NetworkResponseCode.swift */; };
+		114581681CB95E56006B346A /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114581671CB95E56006B346A /* ErrorMessage.swift */; };
+		1145816B1CB96040006B346A /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1145816A1CB96040006B346A /* Url.swift */; };
+		1145816E1CB97077006B346A /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1145816D1CB97077006B346A /* ViewControllerExtension.swift */; };
+		114581711CB989AD006B346A /* StationPresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114581701CB989AD006B346A /* StationPresenterViewController.swift */; };
+		114581731CB98C9C006B346A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114581721CB98C9C006B346A /* MapViewController.swift */; };
 		1147BFF11CB589CC00C1228E /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147BFF01CB589CC00C1228E /* UserAPI.swift */; };
 		1147BFF41CB58A5000C1228E /* MockedUserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147BFF31CB58A5000C1228E /* MockedUserAPI.swift */; };
 		1147BFF71CB590E400C1228E /* MockedPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147BFF61CB590E400C1228E /* MockedPersistenceManager.swift */; };
@@ -29,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		114581621CB94397006B346A /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		114581651CB95B8C006B346A /* NetworkResponseCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResponseCode.swift; sourceTree = "<group>"; };
+		114581671CB95E56006B346A /* ErrorMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		1145816A1CB96040006B346A /* Url.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
+		1145816D1CB97077006B346A /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		114581701CB989AD006B346A /* StationPresenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationPresenterViewController.swift; sourceTree = "<group>"; };
+		114581721CB98C9C006B346A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1147BFF01CB589CC00C1228E /* UserAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		1147BFF31CB58A5000C1228E /* MockedUserAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockedUserAPI.swift; sourceTree = "<group>"; };
 		1147BFF61CB590E400C1228E /* MockedPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockedPersistenceManager.swift; sourceTree = "<group>"; };
@@ -72,8 +86,27 @@
 				1186150D1C9AB3A20037870F /* Station.swift */,
 				1186150F1C9AB3F50037870F /* Bike.swift */,
 				118615111C9AB4500037870F /* Location.swift */,
+				114581621CB94397006B346A /* UserSession.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		114581641CB95B6F006B346A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				114581651CB95B8C006B346A /* NetworkResponseCode.swift */,
+				114581671CB95E56006B346A /* ErrorMessage.swift */,
+				1145816A1CB96040006B346A /* Url.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		1145816C1CB9705B006B346A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1145816D1CB97077006B346A /* ViewControllerExtension.swift */,
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		1147BFF21CB58A1600C1228E /* mocks */ = {
@@ -106,6 +139,8 @@
 			children = (
 				118614EB1C95950F0037870F /* LoginViewController.swift */,
 				118615071C994B9F0037870F /* StationListViewController.swift */,
+				114581701CB989AD006B346A /* StationPresenterViewController.swift */,
+				114581721CB98C9C006B346A /* MapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -126,6 +161,7 @@
 		118614F81C976B410037870F /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				114581641CB95B6F006B346A /* Network */,
 				118614FB1C976DD00037870F /* Config.swift */,
 			);
 			name = Configuration;
@@ -134,6 +170,7 @@
 		11A668A61C73B25100DC25D7 = {
 			isa = PBXGroup;
 			children = (
+				1145816C1CB9705B006B346A /* Extension */,
 				118614F81C976B410037870F /* Configuration */,
 				118614EF1C959B010037870F /* API */,
 				118614EE1C959AD10037870F /* Controller */,
@@ -306,12 +343,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114581681CB95E56006B346A /* ErrorMessage.swift in Sources */,
+				114581661CB95B8C006B346A /* NetworkResponseCode.swift in Sources */,
 				1147BFF41CB58A5000C1228E /* MockedUserAPI.swift in Sources */,
 				118614EC1C95950F0037870F /* LoginViewController.swift in Sources */,
 				1147BFF11CB589CC00C1228E /* UserAPI.swift in Sources */,
 				11A668B31C73B25100DC25D7 /* AppDelegate.swift in Sources */,
 				1147BFF71CB590E400C1228E /* MockedPersistenceManager.swift in Sources */,
+				114581711CB989AD006B346A /* StationPresenterViewController.swift in Sources */,
 				1186150C1C9AAB920037870F /* StationListDataSource.swift in Sources */,
+				1145816E1CB97077006B346A /* ViewControllerExtension.swift in Sources */,
+				1145816B1CB96040006B346A /* Url.swift in Sources */,
+				114581731CB98C9C006B346A /* MapViewController.swift in Sources */,
 				118614F71C9769DB0037870F /* NetworkManager.swift in Sources */,
 				118615101C9AB3F50037870F /* Bike.swift in Sources */,
 				1186150E1C9AB3A20037870F /* Station.swift in Sources */,
@@ -321,6 +364,7 @@
 				118615121C9AB4500037870F /* Location.swift in Sources */,
 				118615081C994B9F0037870F /* StationListViewController.swift in Sources */,
 				1147BFF91CB5AE4200C1228E /* APIFactory.swift in Sources */,
+				114581631CB94397006B346A /* UserSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

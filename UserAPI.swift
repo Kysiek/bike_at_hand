@@ -13,11 +13,21 @@ protocol UserAPI {
     var persistencyManager: PersistencyManager {get set}
     var networkManager: NetworkManager {get set}
     
-    func authenticate(username: String, password: String, complete: (Bool) -> ())
+    init(persistencyManager: PersistencyManager, networkManager: NetworkManager)
     
-    func getStations(success: ([Station]) -> ())
+    func authenticate(username: String,
+                      password: String,
+                      success: () -> (),
+                      error: (String) -> ())
+    
+    func getStations(success: ([Station]) -> (), error: (String) -> ())
+    
+    func getRecentlyDownloadedStations() -> [Station]
     
     func getPreviousUsername() -> String?
     
     func setPreviousUsername(username: String)
+    
+    func checkIfLogged(success: () -> (), notLoggedCallback: () -> ())
+    
 }

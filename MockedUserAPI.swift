@@ -13,23 +13,43 @@ class MockedUserAPI: UserAPI {
     var networkManager: NetworkManager
     var persistencyManager: PersistencyManager
     
-    init(persistencyManager: PersistencyManager, networkManager: NetworkManager) {
+    required init(persistencyManager: PersistencyManager, networkManager: NetworkManager) {
         self.persistencyManager = persistencyManager
         self.networkManager = networkManager
     }
     
-    func authenticate(username: String, password: String, complete: (Bool) -> ()) {
-        delay(1.0) {
-            if !username.isEmpty && !password.isEmpty {
-                complete(true)
-            } else {
-                complete(false)
-            }
+    func authenticate(username: String,
+                      password: String,
+                      success: () -> (),
+                      error: (String) -> ()) {
+        
+        networkManager.authenticate(username,
+                                    password: password,
+                                    successCallback: success,
+                                    errorCallback: error,
+                                    saveUserSessionCallback: { userSession in
+                                        self.persistencyManager.saveUserSession(userSession)
+                                    })
+        
+    }
+    func checkIfLogged(success: () -> (), notLoggedCallback: () -> ()) {
+        
+        if let userSession = persistencyManager.getUserSession() {
+            networkManager.checkIfLogged(userSession,
+                                         success: success,
+                                         notLoggedCallback: notLoggedCallback)
+        } else {
+            notLoggedCallback()
         }
     }
+    func getStations(success: ([Station]) -> (), error: (String) -> ()) {
+        networkManager.getAllStations(persistencyManager.getUserSession()!,
+                                      successCallback: success,
+                                      errorCallback: error)
+    }
     
-    func getStations(success: ([Station]) -> ()) {
-        networkManager.getAllStations(success)
+    func getRecentlyDownloadedStations() -> [Station] {
+        return persistencyManager.getSavedStationArray()
     }
     
     func getPreviousUsername() -> String? {

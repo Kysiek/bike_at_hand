@@ -14,4 +14,11 @@ protocol PersistencyManager {
     
     func getUsername() -> String?
 
+    func saveUserSession(userSession: UserSession)
+    
+    func getUserSession() -> UserSession?
+
+    func saveStationArray(stationArray: [Station])
+    
+    func getSavedStationArray() -> [Station]
 }

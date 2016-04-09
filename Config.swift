@@ -10,7 +10,7 @@ import Foundation
 
 struct Config {
     struct URLStore {
-        private static let rootUrl = "https://www.mws.ovh"
+        private static let rootUrl = "http://localhost:3000"
         static let login = "/account/login"
         static let stations = "/account/history"
         

@@ -12,8 +12,8 @@ import ObjectMapper
 class Station: Mappable {
     var name: String!
     var number: Int!
-    var availableBikes: String!
-    var bikeRacks: String!
+    var availableBikes: Int!
+    var bikeRacks: Int!
     var location: Location!
     
     required init?(_ map: Map) {
@@ -26,5 +26,19 @@ class Station: Mappable {
         availableBikes <- map["numberOfAvailableBikes"]
         bikeRacks <- map["bikeRacks"]
         location <- map["location"]
+    }
+    
+    func isEmpty() -> Bool {
+        return availableBikes == 0
+    }
+    
+    static func filterStations(stations: [Station], containingText text: String, andMayBeEmpty empty: Bool) -> [Station]{
+        var newStationArray = [Station]()
+        for station in stations {
+            if (text.isEmpty || station.name.containsString(text)) && (!station.isEmpty() || empty) {
+                newStationArray.append(station)
+            }
+        }
+        return newStationArray
     }
 }
